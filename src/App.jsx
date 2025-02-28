@@ -8,6 +8,7 @@ import ProductPage from './pages/ProductPage'
 import { ShopContext } from './context/ShopContext'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
+import Cart from './pages/Cart'
 
 function App() {
   // Global states
@@ -19,9 +20,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/product/:productId" element={<ProductPage />} />
+          <Route path="/products/:productId" element={<ProductPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
       </div>

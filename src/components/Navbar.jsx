@@ -19,10 +19,10 @@ function Navbar() {
 
             {/* Nav Links  */}
             <ul className='hidden md:flex gap-4'>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/products">Products</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/contact">Contact Us</Link></li>
+                <li><Link to="/" className='hover:underline'>Home</Link></li>
+                <li><Link to="/products" className='hover:underline'>Products</Link></li>
+                <li><Link to="/about" className='hover:underline'>About</Link></li>
+                <li><Link to="/contact" className='hover:underline'>Contact Us</Link></li>
             </ul>
 
             {/* Cart button / User Icon */}

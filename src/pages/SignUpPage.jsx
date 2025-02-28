@@ -50,7 +50,7 @@ function SignUpPage() {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl transition duration-300"
+                        className="w-full bg-yellow-500 text-black px-6 py-2 rounded-xl text-xl font-semibold hover:bg-yellow-600 transition duration-300"
                     >
                         Sign Up
                     </button>
