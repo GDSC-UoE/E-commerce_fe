@@ -33,7 +33,7 @@ function ProductPage() {
             <nav className="text-sm mb-4 text-gray-600">
                 <Link to="/" className="hover:underline">Home</Link> /
                 <Link to="/products" className="hover:underline mx-1">Products</Link> /
-                <Link to={`/products/${selectedCar?.id}`} className='hover:underline mx-1'><span className="text-gray-800">{selectedCar?.name}</span></Link>
+                <Link to={`/product/${selectedCar?.id}`} className='hover:underline mx-1'><span className="text-gray-800">{selectedCar?.name}</span></Link>
             </nav>
 
             <div className="flex flex-col md:flex-row bg-white shadow rounded-lg overflow-hidden">
