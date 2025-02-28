@@ -18,7 +18,7 @@ function CarCard({ image, description, price }) {
 
 function Popular() {
     return (
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 my-20">
             <h2 className='text-center text-5xl mt-10 mb-10 font-bold text-gray-800'>- Popular Cars -</h2>
             <div className="flex flex-wrap justify-center">
                 {

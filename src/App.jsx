@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import LogoTicker from './components/LogoTicker'
 import Popular from './components/Popular'
+import NewsLetter from './components/NewsLetter'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Hero />
       <LogoTicker />
       <Popular />
+      <NewsLetter />
     </div>
   )
 }
