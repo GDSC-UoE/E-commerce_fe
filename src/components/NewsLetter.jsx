@@ -15,7 +15,7 @@ function NewsLetter() {
 
             {/* Right side */}
             <div className="md:w-1/2 p-2">
-                <img src="/newsletter-image.png" alt="Newsletter" className='w-full h-auto' />
+                <img src="/newsletter-image.png" alt="Newsletter" className='' />
             </div>
         </div>
     );
