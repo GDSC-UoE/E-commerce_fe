@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
     return (
-        <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-15 my-10 mt-40 text-sm mx-auto container'>
+        <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-15 my-10 mt-40 text-sm mx-auto container px-10'>
             <div className="">
                 <img src="/web-logo.svg" className='mb-5 w-32' alt="" />
                 <p className='w-full md:w-2/3 text-gray-600'>
@@ -31,7 +31,7 @@ function Footer() {
                 <hr />
                 <p className='py-5 text-sm text-center'>
 
-                    Copyright {new Date().getUTCFullYear()}
+                    Copyright &copy; {new Date().getUTCFullYear()}
                 </p>
             </div>
         </div>
