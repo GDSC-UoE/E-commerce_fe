@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import LogoTicker from './components/LogoTicker'
+import Popular from './components/Popular'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Navbar />
       <Hero />
       <LogoTicker />
+      <Popular />
     </div>
   )
 }
