@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { cars } from '../data/cars';
 import { useParams, Link } from 'react-router-dom';
+import { ShopContext } from '../context/ShopContext';
 
 function ProductPage() {
     const params = useParams();
+    // initialize states
     const [selectedCar, setSelectedCar] = useState();
     const [quantity, setQuantity] = useState(1);
+
+    // Fetch cart info
+    const { cart, setCart } = useContext(ShopContext)
 
     // Fetch the selected car details
     useEffect(() => {
@@ -26,6 +31,39 @@ function ProductPage() {
             setQuantity(prevQuantity => prevQuantity - 1);
         }
     };
+
+    // Add to cart function
+
+    const addToCart = (car) => {
+        // Check if the requested quantity is available
+        if (quantity > car.quantity) {
+            alert('Not enough stock available');
+            return;
+        }
+
+        // Update the cart state
+        setCart(prevCart => {
+            return prevCart.map(item =>
+                item.id === car.id
+                    ? { ...item, quantity: item.quantity + quantity }
+                    : item
+            ).concat(!prevCart.some(item => item.id === car.id)
+                ? [{ ...car, quantity }]
+                : []);
+        });
+
+        // Decrease the available stock of the selected car
+        setSelectedCar(prevCar => ({
+            ...prevCar,
+            quantity: prevCar.quantity - quantity
+        }));
+
+        // Reset quantity to 1 for the next addition
+        setQuantity(1);
+
+        alert("Item added to cart successfully !!!!!!!!!!!!!!!!")
+    };
+
 
     return (
         <div className="min-h-screen bg-gray-100 p-4">
@@ -72,7 +110,7 @@ function ProductPage() {
                         </div>
                     </div>
 
-                    <button className="w-full bg-yellow-400 text-black py-2 rounded text-lg font-medium hover:bg-yellow-300 transition duration-300" onClick={() => alert("button clicked")}>
+                    <button className="w-full bg-yellow-400 text-black py-2 rounded text-lg font-medium hover:bg-yellow-300 transition duration-300" onClick={() => addToCart(selectedCar)}>
                         Add to Cart
                     </button>
                 </div>
