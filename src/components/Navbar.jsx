@@ -1,6 +1,7 @@
 import { MenuIcon, ShoppingCartIcon, User, XIcon } from 'lucide-react';
 import React, { useState } from 'react'
 import MobileMenu from './MobileMenu';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
     // Toggle Mobile Menu
@@ -16,12 +17,12 @@ function Navbar() {
                 <img src="/web-logo.svg" alt="" />
             </div>
 
-            {/* Nav Links */}
+            {/* Nav Links  */}
             <ul className='hidden md:flex gap-4'>
-                <li>Home</li>
-                <li>Products</li>
-                <li>About</li>
-                <li>Contact Us</li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/products">Products</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact Us</Link></li>
             </ul>
 
             {/* Cart button / User Icon */}

@@ -6,6 +6,8 @@ import LandingPage from './pages/LandingPage'
 import { Route, Routes } from 'react-router-dom'
 import ProductPage from './pages/ProductPage'
 import { ShopContext } from './context/ShopContext'
+import LoginPage from './pages/LoginPage'
+import SignUpPage from './pages/SignUpPage'
 
 function App() {
   // Global states
@@ -18,6 +20,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/product/:productId" element={<ProductPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
         </Routes>
         <Footer />
       </div>
