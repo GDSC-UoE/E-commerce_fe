@@ -1,19 +1,19 @@
 import React from 'react'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import LogoTicker from './components/LogoTicker'
-import Popular from './components/Popular'
-import NewsLetter from './components/NewsLetter'
+
 import Footer from './components/Footer'
+import LandingPage from './pages/LandingPage'
+import { Route, Routes } from 'react-router-dom'
+import ProductPage from './pages/ProductPage'
 
 function App() {
   return (
-    <div>
+    <div className='container mx-auto'>
       <Navbar />
-      <Hero />
-      <LogoTicker />
-      <Popular />
-      <NewsLetter />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/product/:productId" element={<ProductPage />} />
+      </Routes>
       <Footer />
     </div>
   )
