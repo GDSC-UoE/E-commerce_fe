@@ -28,7 +28,7 @@ function Navbar() {
             {/* Cart button / User Icon */}
             <div className="hidden md:flex gap-4">
                 <User size={32} />
-                <ShoppingCartIcon size={32} />
+                <Link to={"/cart"}>   <ShoppingCartIcon size={32} /></Link>
             </div>
 
             {/* Mobile Menu icon */}
