@@ -1,16 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { cars } from '../data/cars';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 
 function ProductPage() {
     const params = useParams();
+
+    const navigate = useNavigate();
     // initialize states
     const [selectedCar, setSelectedCar] = useState();
     const [quantity, setQuantity] = useState(1);
 
     // Fetch cart info
     const { cart, setCart } = useContext(ShopContext)
+
+    // Fetch Auth State
+
+    const { auth } = useContext(ShopContext)
 
     // Fetch the selected car details
     useEffect(() => {
@@ -113,6 +119,9 @@ function ProductPage() {
                     <button className="w-full bg-yellow-400 text-black py-2 rounded text-lg font-medium hover:bg-yellow-300 transition duration-300" onClick={() => addToCart(selectedCar)}>
                         Add to Cart
                     </button>
+
+                    <button className='w-full bg-green-400 text-black py-2 rounded text-lg font-medium hover:bg-green-300 transition duration-300' disabled={!auth} onClick={() => navigate('/cart')}>Proceed to Checkout</button>
+                    
                 </div>
             </div>
         </div>

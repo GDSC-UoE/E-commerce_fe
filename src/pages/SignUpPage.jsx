@@ -1,18 +1,62 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ShopContext } from '../context/ShopContext';
 
 function SignUpPage() {
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    // Auth States
+    const { auth, setAuth } = useContext(ShopContext)
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
+
+        if (password !== confirmPassword) {
+            setError('Passwords do not match');
+            return;
+        }
+
+        const response = await fetch('http://127.0.0.1:8000/accounts/register/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ full_name: fullName, email, password, phone_number: "" }),
+        });
+
+        if (response.ok) {
+            alert('Registration successful!');
+            setAuth({
+                email: email,
+                fullName: fullName
+            })
+            navigate('/');
+        } else {
+            const errorData = await response.json();
+            setError(errorData.error || 'An error occurred');
+        }
+    };
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="w-full max-w-md bg-white rounded-2xl shadow-md p-6 space-y-4">
                 <h2 className="text-2xl font-bold text-center text-gray-800">Create an Account</h2>
                 <p className="text-center text-gray-600">Join us today! It’s free and easy.</p>
-                <form className="space-y-4">
+                {error && <p className="text-center text-red-600">{error}</p>}
+                <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="fullname" className="block text-sm font-medium text-gray-700">Full Name</label>
                         <input
                             type="text"
                             id="fullname"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
                             placeholder="John Doe"
                             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required
@@ -23,6 +67,8 @@ function SignUpPage() {
                         <input
                             type="email"
                             id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             placeholder="example@example.com"
                             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required
@@ -33,6 +79,8 @@ function SignUpPage() {
                         <input
                             type="password"
                             id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             placeholder="••••••••"
                             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required
@@ -43,6 +91,8 @@ function SignUpPage() {
                         <input
                             type="password"
                             id="confirm-password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                             placeholder="••••••••"
                             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required
