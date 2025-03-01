@@ -5,18 +5,17 @@ import { ShopContext } from '../context/ShopContext';
 
 function ProductPage() {
     const params = useParams();
-
     const navigate = useNavigate();
-    // initialize states
+
+    // Initialize states
     const [selectedCar, setSelectedCar] = useState();
     const [quantity, setQuantity] = useState(1);
 
     // Fetch cart info
-    const { cart, setCart } = useContext(ShopContext)
+    const { cart, setCart } = useContext(ShopContext);
 
     // Fetch Auth State
-
-    const { auth } = useContext(ShopContext)
+    const { auth } = useContext(ShopContext);
 
     // Fetch the selected car details
     useEffect(() => {
@@ -39,7 +38,6 @@ function ProductPage() {
     };
 
     // Add to cart function
-
     const addToCart = (car) => {
         // Check if the requested quantity is available
         if (quantity > car.quantity) {
@@ -67,9 +65,8 @@ function ProductPage() {
         // Reset quantity to 1 for the next addition
         setQuantity(1);
 
-        alert("Item added to cart successfully !!!!!!!!!!!!!!!!")
+        alert("Item added to cart successfully!");
     };
-
 
     return (
         <div className="min-h-screen bg-gray-100 p-4">
@@ -77,10 +74,10 @@ function ProductPage() {
             <nav className="text-sm mb-4 text-gray-600">
                 <Link to="/" className="hover:underline">Home</Link> /
                 <Link to="/products" className="hover:underline mx-1">Products</Link> /
-                <Link to={`/product/${selectedCar?.id}`} className='hover:underline mx-1'><span className="text-gray-800">{selectedCar?.name}</span></Link>
+                <span className="text-gray-800">{selectedCar?.name}</span>
             </nav>
 
-            <div className="flex flex-col md:flex-row bg-white shadow rounded-lg overflow-hidden">
+            <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden">
                 {/* Car Image on the Left */}
                 <div className="w-full md:w-1/2 p-4">
                     <img
@@ -93,9 +90,9 @@ function ProductPage() {
                 {/* Product Details on the Right */}
                 <div className="w-full md:w-1/2 p-4 flex flex-col justify-between">
                     <div>
-                        <h1 className="text-2xl font-bold mb-2 text-gray-800">{selectedCar?.name}</h1>
+                        <h1 className="text-3xl font-bold mb-2 text-gray-800">{selectedCar?.name}</h1>
                         <p className="text-gray-600 mb-4">{selectedCar?.description}</p>
-                        <div className="text-xl font-semibold text-green-600 mb-2">Kes. {selectedCar?.price}</div>
+                        <div className="text-2xl font-semibold text-green-600 mb-2">Kes. {selectedCar?.price}</div>
                         <div className="text-sm text-gray-500 mb-4">Available: {selectedCar?.quantity}</div>
 
                         {/* Quantity Adjuster */}
@@ -116,12 +113,30 @@ function ProductPage() {
                         </div>
                     </div>
 
-                    <button className="w-full bg-yellow-400 text-black py-2 rounded text-lg font-medium hover:bg-yellow-300 transition duration-300" onClick={() => addToCart(selectedCar)}>
-                        Add to Cart
-                    </button>
-
-                    <button className='w-full bg-green-400 text-black py-2 rounded text-lg font-medium hover:bg-green-300 transition duration-300' disabled={!auth} onClick={() => navigate('/cart')}>Proceed to Checkout</button>
-                    
+                    <div className="space-y-4">
+                        <button
+                            className="w-full bg-yellow-400 text-black py-2 rounded text-lg font-medium hover:bg-yellow-300 transition duration-300"
+                            onClick={() => addToCart(selectedCar)}
+                        >
+                            Add to Cart
+                        </button>
+                        {
+                            !auth && <Link to={"/login"}>
+                            <button
+                                className="w-full bg-blue-500 text-white py-2 rounded text-lg font-medium hover:bg-blue-400 transition duration-300"
+                            >
+                                Proceed To Login
+                            </button>
+                        </Link>
+                        }
+                        <button
+                            className='w-full bg-green-500 text-white py-2 rounded text-lg font-medium hover:bg-green-400 cursor-pointer transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed'
+                            disabled={!auth}
+                            onClick={() => navigate('/cart')}
+                        >
+                            Proceed to Checkout
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

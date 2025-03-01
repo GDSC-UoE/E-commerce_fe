@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import Cart from './pages/Cart'
 import ProductsPage from './pages/ProductsPage'
+import ThankYou from './pages/ThankYou'
 
 function App() {
   // Global states
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/thankyou" element={<ThankYou />} />
         </Routes>
         <Footer />
       </div>
