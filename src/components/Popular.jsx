@@ -2,11 +2,12 @@ import React from 'react'
 import { cars } from '../data/cars'
 import { Link } from 'react-router-dom'
 
-export function CarCard({ image, description, price, id }) {
+export function CarCard({ image, description, price, id, name }) {
     return (
         <div className="max-w-sm bg-white shadow-lg rounded-lg overflow-hidden m-4 transform transition duration-500 hover:scale-105">
             <img className='w-full h-48 object-cover' src={image} alt="" />
             <div className="p-4">
+            <h3>{name}</h3>
                 <p className="text-gray-700 text-base line-clamp-2">{description}</p>
                 <p className="text-gray-900 font-bold text-xl mt-2">${price}</p>
                 <Link to={`/products/${id}`}>
